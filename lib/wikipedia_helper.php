@@ -50,8 +50,8 @@ class Wikipedia_helper {
             $url = (string)$item->Url;
             $results_array[$text] = array();
             $results_array[$text]['description'] = $description;
-    	    $results_array[$text]['url'] = $url;
-	    }
+            $results_array[$text]['url'] = $url;
+        }
         return $results_array;
     }
 
@@ -92,25 +92,25 @@ class Wikipedia_helper {
         foreach ($search_terms as $search) {
 
             $url = "$endpoint?format=$format&action=$action&search=$search&limit=$limit";
-    		$ch = curl_init();	
-    		$options = array(
+            $ch = curl_init();    
+            $options = array(
                         CURLOPT_USERAGENT       => $user_agent,
-                   		CURLOPT_COOKIEFILE      => "cookies.txt",
-                    	CURLOPT_COOKIEJAR       => "cookies.txt",
-                    	CURLOPT_ENCODING        => "",
-                    	CURLOPT_HEADER          => FALSE,
-                    	CURLOPT_RETURNTRANSFER  => TRUE,
-                    	CURLOPT_HTTPGET         => TRUE,
-                    	CURLOPT_URL             => $url
+                        CURLOPT_COOKIEFILE      => "cookies.txt",
+                        CURLOPT_COOKIEJAR       => "cookies.txt",
+                        CURLOPT_ENCODING        => "",
+                        CURLOPT_HEADER          => FALSE,
+                        CURLOPT_RETURNTRANSFER  => TRUE,
+                        CURLOPT_HTTPGET         => TRUE,
+                        CURLOPT_URL             => $url
                         );
             $ch = curl_init();
             curl_setopt_array($ch, $options);
             curl_exec($ch);
-    		$xml = curl_exec($ch);
+            $xml = curl_exec($ch);
             $results[$search] = $this->_OpensearchXmlToArray($xml);
             curl_close($ch);
         }
-        return $results;	
+        return $results;    
     }
 }
 /* End Of File: lib/wikipedia_helper.php
