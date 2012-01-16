@@ -22,7 +22,8 @@ test/wikipedia\_helper\_tests.php - unit tests for wikipedia API
 
     <?php
         include_once('wikipedia_helper.php');
-        $x = new Wikipedia_helper();
+        $email_address = "your@email.address";
+        $x = new Wikipedia_helper($email_address);
         $search_terms = array('foo', 'bar');
         $search_results_limit = 2;
         $results = $x->getOpensearchResults($search_terms, $search_results_limit);
